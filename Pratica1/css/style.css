@@ -1,0 +1,26 @@
+#screen{
+    display: flex;
+    flex-direction: row;
+}
+
+.colors {
+    margin-bottom: 10px;
+}
+
+.text-input{
+    margin-bottom: 5px;
+    width:60px;
+    pointer-events: none; 
+}
+
+#quadr{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(0,0,0);
+    margin-left: 190px;
+    margin-top: 20px;
+}
+
+ul{
+    list-style-type: none;
+}
