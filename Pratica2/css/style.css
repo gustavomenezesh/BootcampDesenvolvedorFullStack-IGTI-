@@ -1,0 +1,44 @@
+h1{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h2{
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+ul, li{
+    list-style-type: none;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+input{
+    width: 1200px;
+}
+
+body{
+    background-color: rgb(230,230,230);
+}
+
+#dados{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+}
+
+#users{
+    margin-right: 50px;
+}
+
+.imagem{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.spam{
+    font-weight: bold;
+}
