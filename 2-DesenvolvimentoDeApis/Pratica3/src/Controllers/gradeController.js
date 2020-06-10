@@ -1,6 +1,4 @@
 const fs = require('fs').promises;
-const {promisify} = require('util');
-const sleep = promisify(setTimeout);
 let datas = null;
 
 module.exports = {
