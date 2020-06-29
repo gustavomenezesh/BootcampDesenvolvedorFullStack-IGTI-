@@ -22,12 +22,15 @@ module.exports = {
                 {agencia: agencia, conta: conta},
                 {$set: {balance: newVal}}
             )
+            
             if(accountUpdated.nModified)
                 res.send({msg: "Sucessful operation"});
             else
                 res.send({msg: "Operation failed"});
+            
         }else
             res.send({err: "Account not found!"});
+        
     }
 
 
