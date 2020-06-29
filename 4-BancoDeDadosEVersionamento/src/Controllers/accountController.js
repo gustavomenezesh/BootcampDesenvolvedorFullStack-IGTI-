@@ -23,7 +23,7 @@ module.exports = {
                 {$set: {balance: newVal}}
             )
             if(accountUpdated.nModified)
-                res.send({msg: "Deposit realized whith sucessfull"});
+                res.send({msg: "Sucessful operation"});
             else
                 res.send({msg: "Operation failed"});
         }else
