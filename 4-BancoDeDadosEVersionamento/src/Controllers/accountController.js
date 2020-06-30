@@ -139,6 +139,23 @@ module.exports = {
         }else
             res.send({err: 'Account distiny or origin not found'});
 
+    },
+
+    async agencyAverage(req, res){
+        
+        const {agencia} = req.body;
+
+        const account = await Account.find({agencia: agencia});
+
+        let sum = 0;
+
+        for(let i = 0; i < account.length; i++)
+            sum += account[i].balance;
+
+        const average = sum/account.length;
+
+        res.send({average: average});
+
     }
 
 
