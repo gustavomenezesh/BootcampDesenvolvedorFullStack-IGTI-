@@ -116,7 +116,7 @@ module.exports = {
 
                 if(accountOrigin.balance >= value+8){
 
-                    const originBalance = accountOrigin.balance - value+8;
+                    const originBalance = accountOrigin.balance - value - 8;
                     const destinyBalance = accountDistiny.balance + value;
 
                     const originUpdated = await Account.updateOne(
@@ -155,6 +155,78 @@ module.exports = {
         const average = sum/account.length;
 
         res.send({average: average});
+
+    },
+
+    async nLessBalance(req, res){
+
+        const {n} = req.body;
+
+        const account = await Account.find();
+
+        const ordenated = account.sort((a, b) => {
+            return a.balance - b.balance;
+        });
+
+        let nLessBalance = [];
+
+        for(let i = 0; i < n; i++)
+            nLessBalance.push(ordenated[i]);
+
+        nLessBalance = nLessBalance.map(item => {
+            return {agencia: item.agencia, conta: item.conta, balnce: item.balance}
+        })
+
+        res.send(nLessBalance);
+
+    },
+
+    async nBiggerBalance(req, res){
+        const {n} = req.body;
+
+        const account = await Account.find();
+
+        const ordenated = account.sort((a, b) => {
+            return b.balance - a.balance;
+        });
+
+        let nLessBalance = [];
+
+        for(let i = 0; i < n; i++)
+            nLessBalance.push(ordenated[i]);
+
+        nLessBalance = nLessBalance.map(item => {
+            return {agencia: item.agencia, conta: item.conta, balnce: item.balance}
+        })
+
+        res.send(nLessBalance);
+    },
+
+    async private(req, res){
+
+        const accounts = await Account.find();
+
+        const ordenated = accounts.sort((a, b)=>{
+            if(a.agencia === b.agencia)
+                return b.balance - a.balance
+        });
+
+        const privates = [];
+        privates.push(ordenated[0]);
+
+        for(let i = 0; i < ordenated.length-1; i++)
+            if(ordenated[i].agencia != ordenated[i+1].agencia){
+                privates.push(ordenated[i+1]);
+    
+            }
+        
+        for(let i = 0; i < privates.length; i++){
+            const accountUpdated = await Account.updateOne(
+                {agencia: privates[i].agencia, conta: privates[i].conta},
+                {$set: {agencia: 99}}
+            )
+        }
+        res.send(privates);
 
     }
 
